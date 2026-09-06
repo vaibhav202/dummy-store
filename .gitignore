@@ -1,6 +1,10 @@
 # Neon workspace
 .neon
 
+# Agent-local tooling
+.agents/
+skills-lock.json
+
 # Logs
 logs
 *.log

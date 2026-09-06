@@ -1,0 +1,22 @@
+{
+  "name": "roxiler-backend",
+  "version": "1.0.0",
+  "private": true,
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "bootstrap:admin": "node scripts/create-admin.js",
+    "test:phase-a": "bash test-phase-a.sh",
+    "test:smoke": "bash smoke-test.sh"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.16.3"
+  },
+  "allowScripts": {
+    "bcrypt@6.0.0": true
+  }
+}

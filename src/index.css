@@ -23,17 +23,67 @@
     --sec-color: hsl(0, 0%, 40%);
     --alt-color: hsl(0, 0%, 90%);
     --accent: linear-gradient(to bottom, hsl(0, 0%, 50%), hsl(0, 0%, 10%));
+    color-scheme: light;
 }
 
 @media (prefers-color-scheme: dark) {
-    :root {
+    :root:not([data-theme]) {
         --bg: #000;
         --sec-bg: hsl(0, 0%, 10%);
         --color: hsl(0, 0%, 90%);
         --sec-color: hsl(0, 0%, 60%);
         --alt-color: hsl(0, 0%, 10%);
         --accent: linear-gradient(to bottom, hsl(0, 0%, 50%), hsl(0, 0%, 90%));
+        color-scheme: dark;
     }
+}
+
+:root[data-theme="light"] {
+    --bg: #fff;
+    --sec-bg: hsl(0, 0%, 95%);
+    --color: hsl(0, 0%, 10%);
+    --sec-color: hsl(0, 0%, 40%);
+    --alt-color: hsl(0, 0%, 90%);
+    --accent: linear-gradient(to bottom, hsl(0, 0%, 50%), hsl(0, 0%, 10%));
+    color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+    --bg: #000;
+    --sec-bg: hsl(0, 0%, 10%);
+    --color: hsl(0, 0%, 90%);
+    --sec-color: hsl(0, 0%, 60%);
+    --alt-color: hsl(0, 0%, 10%);
+    --accent: linear-gradient(to bottom, hsl(0, 0%, 50%), hsl(0, 0%, 90%));
+    color-scheme: dark;
+}
+
+button {
+    position: relative;
+    z-index: 0;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+button::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background-image: var(--accent);
+    transform: scaleX(0);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.2s ease;
+}
+
+button:hover:not(:disabled)::before {
+    opacity: 1;
+    transform: scaleX(1);
+}
+
+button:hover:not(:disabled) {
+    color: var(--alt-color);
 }
 
 body {

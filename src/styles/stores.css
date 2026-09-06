@@ -13,7 +13,6 @@
             max-width: 720px;
             margin: 0.75rem 0 1rem;
             font-size: clamp(2.5rem, 7vw, 5.5rem);
-            line-height: 0.98;
             letter-spacing: -0.08rem;
             background-image: var(--accent);
             background-clip: text;
@@ -183,9 +182,6 @@
             outline-offset: 3px;
         }
 
-        &:hover {
-            color: var(--color);
-        }
     }
 
     .sort-indicator {
@@ -269,8 +265,7 @@
             cursor: pointer;
             transition: color 0.2s ease, transform 0.2s ease;
 
-            &.is-selected,
-            &:hover {
+            &.is-selected {
                 color: var(--color);
             }
 
@@ -294,12 +289,7 @@
             font-size: 0.8rem;
             font-weight: var(--font-bold);
             cursor: pointer;
-            transition: background-image 0.2s ease, color 0.2s ease, opacity 0.2s ease;
-
-            &:hover:not(:disabled) {
-                background-image: var(--accent);
-                color: var(--alt-color);
-            }
+            transition: color 0.2s ease, opacity 0.2s ease;
 
             &:focus-visible {
                 outline: 2px solid var(--color);
@@ -352,12 +342,7 @@
         font-size: 0.8rem;
         font-weight: var(--font-bold);
         cursor: pointer;
-        transition: background-image 0.2s ease, color 0.2s ease, opacity 0.2s ease;
-
-        &:hover {
-            background-image: var(--accent);
-            color: var(--alt-color);
-        }
+        transition: color 0.2s ease, opacity 0.2s ease;
 
         &:focus-visible {
             outline: 2px solid var(--color);

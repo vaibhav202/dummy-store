@@ -7,13 +7,16 @@ import {
   isAuthenticated,
 } from "../mock/currentUser.js";
 import { ROLES } from "../mock/roles.js";
+import { applyTheme, getInitialTheme, THEMES } from "../utils/theme.js";
 import "../styles/navbar.css";
 
 function Navbar() {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const [isLoggingOut, setIsLoggingOut] = useState(false);
+  const [theme, setTheme] = useState(() => getInitialTheme());
   const signedIn = isAuthenticated();
+  const isDarkTheme = theme === THEMES.DARK;
   const dashboardPath =
     currentUser.role === ROLES.SYSTEM_ADMINISTRATOR
       ? "/admin"
@@ -21,6 +24,11 @@ function Navbar() {
         ? "/owner"
         : null;
   const showStores = currentUser.role === ROLES.NORMAL_USER;
+
+  function handleThemeToggle() {
+    const nextTheme = isDarkTheme ? THEMES.LIGHT : THEMES.DARK;
+    setTheme(applyTheme(nextTheme));
+  }
 
   async function handleLogout() {
     setIsLoggingOut(true);
@@ -63,6 +71,19 @@ function Navbar() {
         </li>
         <li>
           <a href="#contact">Contact</a>
+        </li>
+        <li className="theme-toggle-item">
+          <button
+            className="theme-toggle"
+            type="button"
+            onClick={handleThemeToggle}
+            aria-label={`Switch to ${isDarkTheme ? "light" : "dark"} theme`}
+            aria-pressed={isDarkTheme}
+            title={`Switch to ${isDarkTheme ? "light" : "dark"} theme`}
+          >
+            <span aria-hidden="true">{isDarkTheme ? "☀" : "☾"}</span>
+            <span>{isDarkTheme ? "Light" : "Dark"}</span>
+          </button>
         </li>
         <li className="auth-btn">
           {signedIn ? (

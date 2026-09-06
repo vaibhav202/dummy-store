@@ -50,7 +50,6 @@
 
             &:hover:not(.is-active) {
                 border-color: var(--alt-color);
-                color: var(--color);
             }
 
             &.is-active {
@@ -190,12 +189,7 @@
             font-weight: var(--font-bold);
             cursor: pointer;
             box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-            transition: background-image 0.3s ease, color 0.3s ease, opacity 0.2s ease;
-
-            &:hover:not(:disabled) {
-                background-image: var(--accent);
-                color: var(--alt-color);
-            }
+            transition: color 0.3s ease, opacity 0.2s ease;
 
             &:focus-visible {
                 outline: 2px solid var(--color);

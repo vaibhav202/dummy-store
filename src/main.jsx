@@ -10,6 +10,7 @@ import Stores from './pages/Stores.jsx';
 import AdminDashboard, { AdminUserDetail } from './pages/AdminDashboard.jsx';
 import StoreOwnerDashboard from './pages/StoreOwnerDashboard.jsx';
 import { ROLES } from './mock/roles.js';
+import { applyTheme, getInitialTheme } from './utils/theme.js';
 import RoleProtectedRoute from './components/RoleProtectedRoute.jsx';
 
 const ALL_ROLES = [
@@ -17,6 +18,8 @@ const ALL_ROLES = [
   ROLES.STORE_OWNER,
   ROLES.SYSTEM_ADMINISTRATOR,
 ];
+
+applyTheme(getInitialTheme(), false);
 
 const router = createBrowserRouter([
   {

@@ -13,7 +13,6 @@
             max-width: 720px;
             margin: 0.75rem 0 1rem;
             font-size: clamp(2.5rem, 7vw, 5.5rem);
-            line-height: 0.98;
             letter-spacing: -0.08rem;
             background-image: var(--accent);
             background-clip: text;
@@ -207,12 +206,7 @@
             font-weight: var(--font-bold);
             cursor: pointer;
             box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
-            transition: background-image 0.2s ease, color 0.2s ease;
-
-            &:hover:not(:disabled) {
-                background-image: var(--accent);
-                color: var(--alt-color);
-            }
+            transition: color 0.2s ease;
 
             &:focus-visible {
                 outline: 2px solid var(--color);
@@ -344,10 +338,6 @@
         text-transform: inherit;
         cursor: pointer;
 
-        &:hover {
-            color: var(--color);
-        }
-
         &:focus-visible {
             outline: 2px solid var(--color);
             outline-offset: 3px;
@@ -441,7 +431,6 @@
             h1 {
                 margin: 0.65rem 0 1.5rem;
                 font-size: clamp(2rem, 5vw, 3.5rem);
-                line-height: 1;
                 background-image: var(--accent);
                 background-clip: text;
                 -webkit-background-clip: text;

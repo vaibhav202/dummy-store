@@ -1,0 +1,235 @@
+.owner-page {
+    width: min(1120px, 100%);
+    padding: 4rem 2rem 5rem;
+
+    .owner-header {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 2rem;
+        margin-bottom: 2.5rem;
+
+        h1 {
+            max-width: 720px;
+            margin: 0.75rem 0 1rem;
+            font-size: clamp(2.5rem, 7vw, 5.5rem);
+            line-height: 0.98;
+            letter-spacing: -0.08rem;
+            background-image: var(--accent);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+    }
+
+    .owner-status {
+        padding: 2rem;
+        background: var(--sec-bg);
+        border: 1px solid color-mix(in srgb, var(--color) 10%, transparent);
+        border-radius: 12px;
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+
+        h1 {
+            margin-top: 0.75rem;
+            font-size: clamp(2rem, 6vw, 4rem);
+            line-height: 1;
+            background-image: var(--accent);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+    }
+
+    .owner-intro {
+        max-width: 600px;
+        color: var(--sec-color);
+        font-size: 1.1rem;
+        line-height: 1.6;
+    }
+
+    .owner-store-meta {
+        display: flex;
+        flex: 0 0 auto;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 0.35rem;
+        max-width: 270px;
+        color: var(--sec-color);
+        font-size: 0.85rem;
+        line-height: 1.45;
+        text-align: right;
+    }
+
+    .owner-content {
+        display: grid;
+        grid-template-columns: minmax(220px, 0.75fr) minmax(0, 2fr);
+        align-items: start;
+        gap: 1.25rem;
+    }
+
+    .owner-average-card,
+    .owner-raters-panel {
+        background: var(--sec-bg);
+        border: 1px solid color-mix(in srgb, var(--color) 10%, transparent);
+        border-radius: 12px;
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+    }
+
+    .owner-average-card {
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+        padding: 1.5rem;
+
+        .owner-average-label {
+            margin-top: 1rem;
+            color: var(--sec-color);
+            font-size: 0.85rem;
+        }
+
+        strong {
+            font-size: clamp(3.5rem, 8vw, 5.5rem);
+            line-height: 0.95;
+        }
+
+        .owner-average-scale {
+            color: var(--sec-color);
+            font-size: 0.85rem;
+        }
+
+        .owner-rating-count {
+            margin-top: 1.25rem;
+            padding-top: 1rem;
+            border-top: 1px solid color-mix(in srgb, var(--color) 12%, transparent);
+            color: var(--sec-color);
+            font-size: 0.8rem;
+            line-height: 1.45;
+        }
+    }
+
+    .owner-raters-panel {
+        min-width: 0;
+        padding: 1.5rem;
+
+        .owner-panel-heading {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 1.25rem;
+
+            h2 {
+                margin-top: 0.4rem;
+                font-size: 1.35rem;
+            }
+
+            > span {
+                color: var(--sec-color);
+                font-size: 0.85rem;
+                white-space: nowrap;
+            }
+        }
+    }
+
+    .owner-table-wrap {
+        overflow-x: auto;
+        border: 1px solid color-mix(in srgb, var(--color) 10%, transparent);
+        border-radius: 8px;
+
+        .owner-table {
+            width: 100%;
+            min-width: 500px;
+            border-collapse: collapse;
+            text-align: left;
+
+            th,
+            td {
+                padding: 1rem 1.1rem;
+                border-bottom: 1px solid color-mix(in srgb, var(--color) 10%, transparent);
+                vertical-align: top;
+            }
+
+            thead {
+                th {
+                    color: var(--sec-color);
+                    font-size: 0.72rem;
+                    font-weight: var(--font-bold);
+                    letter-spacing: 0.1rem;
+                    text-transform: uppercase;
+                }
+            }
+
+            tbody {
+                tr {
+                    transition: background-color 0.2s ease;
+
+                    &:last-child {
+                        th,
+                        td {
+                            border-bottom: 0;
+                        }
+                    }
+
+                    &:hover {
+                        background: color-mix(in srgb, var(--bg) 55%, transparent);
+                    }
+                }
+
+                th {
+                    font-weight: var(--font-bold);
+                    text-align: left;
+                }
+
+                td {
+                    color: var(--sec-color);
+
+                    strong {
+                        color: var(--color);
+                        font-size: 1.1rem;
+                    }
+                }
+            }
+        }
+    }
+
+    .owner-rating-scale {
+        color: var(--sec-color);
+        font-size: 0.8rem;
+    }
+
+    .owner-empty-state {
+        padding: 1.5rem;
+        border: 1px dashed var(--alt-color);
+        color: var(--sec-color);
+        line-height: 1.5;
+    }
+
+    @media (max-width: 760px) {
+        .owner-header {
+            align-items: flex-start;
+            flex-direction: column;
+        }
+
+        .owner-store-meta {
+            align-items: flex-start;
+            text-align: left;
+        }
+
+        .owner-content {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (max-width: 540px) {
+        padding: 3rem 1rem 4rem;
+
+        .owner-header h1 {
+            font-size: clamp(2.4rem, 14vw, 4rem);
+        }
+
+        .owner-average-card,
+        .owner-raters-panel {
+            padding: 1.1rem;
+        }
+    }
+}

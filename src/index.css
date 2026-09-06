@@ -1,0 +1,62 @@
+@import url("https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap");
+
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Google Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings: "GRAD" 0;
+}
+
+:root {
+    --font-size: 1rem;
+    --font-regular: 400;
+    --font-bold: 800;
+
+    --bg: #fff;
+    --sec-bg: hsl(0, 0%, 95%);
+    --color: hsl(0, 0%, 10%);
+    --sec-color: hsl(0, 0%, 40%);
+    --alt-color: hsl(0, 0%, 90%);
+    --accent: linear-gradient(to bottom, hsl(0, 0%, 50%), hsl(0, 0%, 10%));
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #000;
+        --sec-bg: hsl(0, 0%, 10%);
+        --color: hsl(0, 0%, 90%);
+        --sec-color: hsl(0, 0%, 60%);
+        --alt-color: hsl(0, 0%, 10%);
+        --accent: linear-gradient(to bottom, hsl(0, 0%, 50%), hsl(0, 0%, 90%));
+    }
+}
+
+body {
+     background-color: var(--bg);
+     height: 100dvh;
+}
+
+#root {
+    color: var(--color);
+    font-size: var(--font-size);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100dvw;
+    height: 100%;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+}

@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
-  checkEmail,
   getErrorMessage,
   getValidationErrors,
   login,
@@ -77,49 +76,23 @@ function AuthUI() {
   const [touched, setTouched] = useState({});
   const [errors, setErrors] = useState({});
   const [formError, setFormError] = useState("");
-  const [identifierState, setIdentifierState] = useState("idle");
+  const [mode, setMode] = useState("login");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  useEffect(() => {
-    const normalizedEmail = normalizeEmail(values.email);
-    const emailError = validateUserField("email", values.email);
-
-    if (!normalizedEmail || emailError) {
-      return undefined;
-    }
-
-    let isActive = true;
-    const controller = new AbortController();
-    const timeoutId = window.setTimeout(() => {
-      checkEmail(normalizedEmail, { signal: controller.signal })
-        .then((result) => {
-          if (isActive) {
-            setIdentifierState(result?.exists ? "existing" : "new");
-          }
-        })
-        .catch((error) => {
-          if (isActive && error.name !== "AbortError") {
-            setIdentifierState("new");
-            setFormError(getErrorMessage(error));
-          }
-        });
-    }, 350);
-
-    return () => {
-      isActive = false;
-      window.clearTimeout(timeoutId);
-      controller.abort();
-    };
-  }, [values.email]);
-
-  const isLogin = identifierState === "existing";
-  const isCheckingIdentifier = identifierState === "checking"
-    && !validateUserField("email", values.email);
+  const isLogin = mode === "login";
   const buttonLabel = isLogin ? "Log in" : "Create account";
   const branchLabel = isLogin ? "Existing account" : "Normal User account";
   const branchDescription = isLogin
-    ? "We found your account. Enter your password to log in."
-    : "New accounts are for Normal Users only. Administrator and Store Owner accounts are created by an admin.";
+    ? "Enter your account details to continue to your role-based dashboard."
+    : "Create a Normal User account. Administrator and Store Owner accounts are created by an admin.";
+
+  function handleModeChange(nextMode) {
+    setMode(nextMode);
+    setValues(INITIAL_VALUES);
+    setTouched({});
+    setErrors({});
+    setFormError("");
+  }
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -134,9 +107,6 @@ function AuthUI() {
       [name]: touched[name] ? validateUserField(name, value) : "",
     }));
 
-    if (name === "email") {
-      setIdentifierState(value.trim() ? "checking" : "idle");
-    }
   }
 
   function handleBlur(event) {
@@ -175,7 +145,7 @@ function AuthUI() {
     setErrors(nextErrors);
     setFormError("");
 
-    if (Object.keys(nextErrors).length > 0 || isCheckingIdentifier) {
+    if (Object.keys(nextErrors).length > 0) {
       return;
     }
 
@@ -217,14 +187,32 @@ function AuthUI() {
     <section className="auth-ui">
       <header className="auth-header">
         <p className="eyebrow">ACCOUNT ACCESS</p>
-        <h1>Login or Sign Up</h1>
+        <h1>{isLogin ? "Welcome back." : "Create your account."}</h1>
         <p className="auth-intro">One account for the whole store network.</p>
       </header>
+
+      <div className="auth-mode-switch" role="group" aria-label="Choose account action">
+        <button
+          className={`auth-mode-button${isLogin ? " is-active" : ""}`}
+          type="button"
+          onClick={() => handleModeChange("login")}
+          aria-pressed={isLogin}
+        >
+          Log in
+        </button>
+        <button
+          className={`auth-mode-button${!isLogin ? " is-active" : ""}`}
+          type="button"
+          onClick={() => handleModeChange("signup")}
+          aria-pressed={!isLogin}
+        >
+          Create account
+        </button>
+      </div>
 
       <div className="auth-branch" aria-live="polite">
         <span className="auth-branch-label">{branchLabel}</span>
         <p>{branchDescription}</p>
-        {isCheckingIdentifier ? <small>Checking email…</small> : null}
       </div>
 
       <form className="auth-form" noValidate onSubmit={handleSubmit}>
@@ -296,7 +284,7 @@ function AuthUI() {
         <button
           className="auth-submit"
           type="submit"
-          disabled={isCheckingIdentifier || isSubmitting}
+          disabled={isSubmitting}
         >
           {buttonLabel}
         </button>

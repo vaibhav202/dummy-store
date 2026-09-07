@@ -64,3 +64,14 @@ unset BOOTSTRAP_ADMIN_NAME BOOTSTRAP_ADMIN_EMAIL BOOTSTRAP_ADMIN_ADDRESS BOOTSTR
 The name must be 20–60 characters and the password must be 8–16 characters with an uppercase
 letter and a special character. After creation, log in through `/auth`; the administrator is
 redirected to `/admin` and can create the remaining platform accounts.
+
+## Live demo administrator
+
+The deployed showcase includes a demo System Administrator account:
+
+- Email: `sys@admin.com`
+- Password: `Sys@admin01`
+
+Open the deployed frontend and visit `/auth` to sign in. After authentication, the account is
+redirected to `/admin`, where you can create Normal User and Store Owner accounts, add stores,
+and review the platform dashboards. These credentials are intended only for the recruiter demo.

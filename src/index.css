@@ -82,8 +82,9 @@ button:hover:not(:disabled)::before {
     transform: scaleX(1);
 }
 
-button:hover:not(:disabled) {
-    color: var(--alt-color);
+button:hover:not(:disabled),
+button:hover:not(:disabled) > * {
+    color: var(--alt-color) !important;
 }
 
 body {
@@ -109,4 +110,14 @@ main {
     justify-content: flex-start;
     width: 100%;
     height: 100%;
+}
+
+h1 {
+    line-height: 1.14;
+}
+
+@media (max-width: 760px) {
+    main {
+        padding-bottom: calc(5rem + env(safe-area-inset-bottom));
+    }
 }

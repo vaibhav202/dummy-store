@@ -30,6 +30,7 @@ function AdminStoreField({
     name,
     onBlur,
     onChange,
+    placeholder: " ",
     value,
   };
 

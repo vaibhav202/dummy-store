@@ -126,21 +126,16 @@
         gap: 1rem;
 
         .admin-field {
+            position: relative;
             display: flex;
             flex-direction: column;
             gap: 0.4rem;
-
-            label {
-                color: var(--sec-color);
-                font-size: 0.75rem;
-                font-weight: var(--font-bold);
-                letter-spacing: 0.1rem;
-                text-transform: uppercase;
-            }
+            padding-top: 0.35rem;
 
             input,
             textarea,
             select {
+                display: block;
                 width: 100%;
                 padding: 0.8rem 0.9rem;
                 border: 1px solid var(--alt-color);
@@ -162,11 +157,54 @@
                 cursor: pointer;
             }
 
+            label {
+                position: absolute;
+                top: 1.05rem;
+                left: 0.55rem;
+                padding: 0 0.45rem;
+                background-color: var(--bg);
+                color: var(--sec-color);
+                font-size: 0.9rem;
+                font-weight: var(--font-regular);
+                letter-spacing: normal;
+                pointer-events: none;
+                text-transform: none;
+                transition: top 0.2s ease, font-size 0.2s ease, color 0.2s ease;
+            }
+
             input:focus,
             textarea:focus,
             select:focus {
                 border-color: var(--color);
                 box-shadow: 0 0 0 1px var(--color);
+            }
+
+            input:focus + label,
+            input:not(:placeholder-shown) + label,
+            textarea:focus + label,
+            textarea:not(:placeholder-shown) + label {
+                top: -0.05rem;
+                color: var(--color);
+                font-size: 0.75rem;
+            }
+
+            &.admin-role-field {
+                padding-top: 0;
+
+                label {
+                    position: static;
+                    top: auto;
+                    left: auto;
+                    padding: 0;
+                    background-color: transparent;
+                    color: var(--sec-color);
+                    font-size: 0.75rem;
+                    font-weight: var(--font-bold);
+                    letter-spacing: 0.1rem;
+                    pointer-events: auto;
+                    text-transform: uppercase;
+                    transition: none;
+                }
             }
 
             &.has-error {
@@ -235,10 +273,12 @@
             border-bottom: 1px solid color-mix(in srgb, var(--color) 12%, transparent);
 
             .admin-search {
+                position: relative;
                 display: flex;
                 flex: 1 1 460px;
                 flex-direction: column;
                 gap: 0.45rem;
+                padding-top: 0.35rem;
                 color: var(--sec-color);
                 font-size: 0.75rem;
                 font-weight: var(--font-bold);
@@ -246,6 +286,7 @@
                 text-transform: uppercase;
 
                 input {
+                    display: block;
                     width: 100%;
                     padding: 0.8rem 1rem;
                     border: 1px solid var(--alt-color);
@@ -266,6 +307,28 @@
                         border-color: var(--color);
                         box-shadow: 0 0 0 1px var(--color);
                     }
+                }
+
+                label {
+                    position: absolute;
+                    top: 1.05rem;
+                    left: 0.55rem;
+                    padding: 0 0.45rem;
+                    background-color: var(--bg);
+                    color: var(--sec-color);
+                    font-size: 0.9rem;
+                    font-weight: var(--font-regular);
+                    letter-spacing: normal;
+                    pointer-events: none;
+                    text-transform: none;
+                    transition: top 0.2s ease, font-size 0.2s ease, color 0.2s ease;
+                }
+
+                input:focus + label,
+                input:not(:placeholder-shown) + label {
+                    top: -0.05rem;
+                    color: var(--color);
+                    font-size: 0.75rem;
                 }
             }
 
@@ -479,6 +542,12 @@
         }
     }
 
+    @media (min-width: 761px) and (max-width: 900px) {
+        .admin-form-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
     @media (max-width: 760px) {
         .admin-header {
             align-items: flex-start;
@@ -494,9 +563,13 @@
             grid-template-columns: 1fr;
         }
 
-        .admin-table-toolbar {
+        .admin-table-section .admin-table-toolbar {
             align-items: stretch;
             flex-direction: column;
+
+            .admin-search {
+                flex: 0 1 auto;
+            }
         }
     }
 

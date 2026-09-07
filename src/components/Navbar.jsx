@@ -66,10 +66,10 @@ function Navbar() {
             <Link to="/password">Security</Link>
           </li>
         ) : null}
-        <li>
+        <li className="nav-secondary-item">
           <a href="#about">About</a>
         </li>
-        <li>
+        <li className="nav-secondary-item">
           <a href="#contact">Contact</a>
         </li>
         <li className="theme-toggle-item">

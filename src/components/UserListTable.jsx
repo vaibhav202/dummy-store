@@ -45,16 +45,16 @@ function UserListTable({
   return (
     <div className="admin-table-section">
       <div className="admin-table-toolbar">
-        <label className="admin-search" htmlFor="admin-user-search">
-          <span>Filter users</span>
+        <div className="admin-search">
           <input
             id="admin-user-search"
             type="search"
             value={search}
             onChange={(event) => onSearchChange(event.target.value)}
-            placeholder="Name, email, address, or role"
+            placeholder=" "
           />
-        </label>
+          <label htmlFor="admin-user-search">Filter users</label>
+        </div>
         <p className="admin-table-count" aria-live="polite">
           {isLoading ? "Loading users…" : `${users.length} users`}
         </p>

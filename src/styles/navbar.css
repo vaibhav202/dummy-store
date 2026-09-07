@@ -131,3 +131,101 @@ nav {
         }
     }
 }
+
+@media (min-width: 761px) and (max-width: 1024px) {
+    nav {
+        align-items: flex-start;
+        gap: 0.75rem;
+        padding: 0.75rem 1rem;
+
+        ul {
+            flex: 1 1 0;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            gap: 0.5rem;
+            min-width: 0;
+
+            li {
+                padding: 6px 10px;
+
+                > a,
+                > button {
+                    font-size: 0.85rem;
+                }
+
+                &.theme-toggle-item > .theme-toggle {
+                    padding: 0.4rem 0.6rem;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 760px) {
+    nav {
+        position: fixed;
+        top: auto;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: block;
+        padding: 0.5rem 0.5rem calc(0.5rem + env(safe-area-inset-bottom));
+        width: 100%;
+        border-radius: 20px 20px 0 0;
+        box-shadow: 0 -8px 18px rgba(0, 0, 0, 0.12);
+
+        > p {
+            display: none;
+        }
+
+        ul {
+            align-items: stretch;
+            justify-content: space-around;
+            gap: 0.25rem;
+            width: 100%;
+
+            li {
+                flex: 1 1 0;
+                min-width: 0;
+                padding: 0;
+
+                > a,
+                > button {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 100%;
+                    min-height: 2.75rem;
+                    padding: 0.55rem 0.25rem;
+                    font-size: 0.72rem;
+                    line-height: 1.1;
+                    text-align: center;
+                    white-space: nowrap;
+                }
+
+                &.nav-secondary-item {
+                    display: none;
+                }
+
+                &.theme-toggle-item {
+                    display: flex;
+                    align-items: stretch;
+
+                    > .theme-toggle {
+                        width: 100%;
+                        padding: 0.55rem 0.25rem;
+                        border: 0;
+                        border-radius: 4px;
+                        background: transparent;
+                        font-size: 0.72rem;
+                    }
+                }
+
+                &.auth-btn {
+                    outline: 0;
+                    border-radius: 4px;
+                }
+            }
+        }
+    }
+}

@@ -270,16 +270,16 @@ function Stores() {
       </header>
 
       <div className="store-toolbar">
-        <label className="store-search" htmlFor="store-search-input">
-          <span>Search stores</span>
+        <div className="store-search">
           <input
             id="store-search-input"
             type="search"
             value={search}
             onChange={handleSearchChange}
-            placeholder="Search by name or address"
+            placeholder=" "
           />
-        </label>
+          <label htmlFor="store-search-input">Search stores</label>
+        </div>
         <div className="store-toolbar-meta">
           <p className="stores-results" aria-live="polite">
             {isLoading

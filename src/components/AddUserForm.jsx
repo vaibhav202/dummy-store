@@ -47,6 +47,7 @@ function AdminField({
     name,
     onBlur,
     onChange,
+    placeholder: " ",
     value,
   };
 
@@ -203,7 +204,7 @@ function AddUserForm({ onUserAdded }) {
         type="textarea"
         value={values.address}
       />
-      <div className={`admin-field${touched.role && errors.role ? " has-error" : ""}`}>
+      <div className={`admin-field admin-role-field${touched.role && errors.role ? " has-error" : ""}`}>
         <label htmlFor="admin-user-role">Role</label>
         <select
           aria-describedby={touched.role && errors.role ? "admin-user-role-error" : undefined}

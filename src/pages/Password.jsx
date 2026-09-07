@@ -114,9 +114,9 @@ function Password() {
         </p>
 
         <form className="password-form" noValidate onSubmit={handleSubmit}>
-          <label className={`password-field${errors.currentPassword ? " has-error" : ""}`}>
-            <span>Current password</span>
+          <div className={`password-field${errors.currentPassword ? " has-error" : ""}`}>
             <input
+              id="current-password"
               type="password"
               name="currentPassword"
               value={values.currentPassword}
@@ -124,14 +124,16 @@ function Password() {
               onBlur={handleBlur}
               autoComplete="current-password"
               aria-invalid={Boolean(errors.currentPassword)}
+              placeholder=" "
             />
+            <label htmlFor="current-password">Current password</label>
             {touched.currentPassword && errors.currentPassword ? (
               <small role="alert">{errors.currentPassword}</small>
             ) : null}
-          </label>
-          <label className={`password-field${errors.newPassword ? " has-error" : ""}`}>
-            <span>New password</span>
+          </div>
+          <div className={`password-field${errors.newPassword ? " has-error" : ""}`}>
             <input
+              id="new-password"
               type="password"
               name="newPassword"
               value={values.newPassword}
@@ -140,11 +142,13 @@ function Password() {
               autoComplete="new-password"
               maxLength={16}
               aria-invalid={Boolean(errors.newPassword)}
+              placeholder=" "
             />
+            <label htmlFor="new-password">New password</label>
             {touched.newPassword && errors.newPassword ? (
               <small role="alert">{errors.newPassword}</small>
             ) : null}
-          </label>
+          </div>
           <p className="password-hint">
             Use 8–16 characters with at least 1 uppercase letter and 1 special character.
           </p>
